@@ -265,8 +265,7 @@ export default function TechnicalProjectCard({ project }: TechnicalProjectCardPr
                   )}
 
                   {activeTab === 'research' && (
-                    <div className="space-y-6"
-                    >
+                    <div className="space-y-6">
                       <div>
                         <h4 className="text-lg font-semibold mb-4 flex items-center gap-2">
                           <Brain className="w-5 h-5 text-primary" />
