@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
@@ -9,6 +9,7 @@ import Skills from "@/components/Skills";
 import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 import ResumeDocument from "@/components/ResumeDocument";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import "@/styles/globals.css";
 
 function App() {
@@ -29,51 +30,53 @@ function App() {
 
   console.log('Rendering main app');
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navigation />
-      
-      <main>
-        <div id="hero">
-          <Hero />
-        </div>
+    <Suspense fallback={<LoadingSpinner />}>
+      <div className="min-h-screen bg-background text-foreground">
+        <Navigation />
         
-        <div id="experience">
-          <Experience />
-        </div>
-        
-        <div id="projects">
-          <Projects />
-        </div>
-        
-        <div id="technical-portfolio">
-          <TechnicalPortfolioSection />
-        </div>
-        
-        <div id="skills">
-          <Skills />
-        </div>
-        
-        <div id="education">
-          <Education />
-        </div>
-        
-        <div id="contact">
-          <Contact />
-        </div>
-      </main>
+        <main>
+          <div id="hero">
+            <Hero />
+          </div>
+          
+          <div id="experience">
+            <Experience />
+          </div>
+          
+          <div id="projects">
+            <Projects />
+          </div>
+          
+          <div id="technical-portfolio">
+            <TechnicalPortfolioSection />
+          </div>
+          
+          <div id="skills">
+            <Skills />
+          </div>
+          
+          <div id="education">
+            <Education />
+          </div>
+          
+          <div id="contact">
+            <Contact />
+          </div>
+        </main>
 
-      {/* Footer */}
-      <footer className="bg-secondary/20 border-t border-border py-8">
-        <div className="container mx-auto px-4 text-center">
-          <div className="text-sm text-muted-foreground">
-            © 2024 Mitchell Marfinetz. Built with React, TypeScript, and shadcn/ui.
+        {/* Footer */}
+        <footer className="bg-secondary/20 border-t border-border py-8">
+          <div className="container mx-auto px-4 text-center">
+            <div className="text-sm text-muted-foreground">
+              © 2024 Mitchell Marfinetz. Built with React, TypeScript, and shadcn/ui.
+            </div>
+            <div className="text-xs text-muted-foreground mt-2">
+              Focused on AI Safety, Autonomous Systems, and Blockchain Innovation
+            </div>
           </div>
-          <div className="text-xs text-muted-foreground mt-2">
-            Focused on AI Safety, Autonomous Systems, and Blockchain Innovation
-          </div>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
+    </Suspense>
   );
 }
 
