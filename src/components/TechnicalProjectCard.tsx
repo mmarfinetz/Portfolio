@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -31,23 +30,16 @@ const categoryIcons = {
 
 interface TechnicalProjectCardProps {
   project: TechnicalProject;
-  index: number;
 }
 
-export default function TechnicalProjectCard({ project, index }: TechnicalProjectCardProps) {
+export default function TechnicalProjectCard({ project }: TechnicalProjectCardProps) {
   const [expanded, setExpanded] = useState(false);
   const [activeTab, setActiveTab] = useState<'architecture' | 'results' | 'research'>('architecture');
   
   const Icon = categoryIcons[project.category];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: index * 0.1 }}
-      viewport={{ once: true }}
-      className="mb-8"
-    >
+    <div className="mb-8">
       <Card className="group hover:shadow-xl transition-all duration-300 border-border/50 hover:border-primary/20">
         <CardHeader className="pb-4">
           {/* Header Section */}
@@ -137,15 +129,8 @@ export default function TechnicalProjectCard({ project, index }: TechnicalProjec
           </Button>
 
           {/* Expanded Content */}
-          <AnimatePresence>
-            {expanded && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="overflow-hidden"
-              >
+          {expanded && (
+            <div className="overflow-hidden">
                 {/* Tab Navigation */}
                 <div className="flex mb-6 border-b border-border">
                   {[
@@ -171,11 +156,7 @@ export default function TechnicalProjectCard({ project, index }: TechnicalProjec
                 {/* Tab Content */}
                 <div className="min-h-[300px]">
                   {activeTab === 'architecture' && (
-                    <motion.div
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="space-y-6"
-                    >
+                    <div className="space-y-6">
                       <div>
                         <h4 className="text-lg font-semibold mb-3 flex items-center gap-2">
                           <Brain className="w-5 h-5 text-primary" />
@@ -222,15 +203,11 @@ export default function TechnicalProjectCard({ project, index }: TechnicalProjec
                           ))}
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   )}
 
                   {activeTab === 'results' && (
-                    <motion.div
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="space-y-6"
-                    >
+                    <div className="space-y-6">
                       <div>
                         <h4 className="text-lg font-semibold mb-4 flex items-center gap-2">
                           <BarChart3 className="w-5 h-5 text-primary" />
@@ -284,14 +261,11 @@ export default function TechnicalProjectCard({ project, index }: TechnicalProjec
                           ))}
                         </ul>
                       </div>
-                    </motion.div>
+                    </div>
                   )}
 
                   {activeTab === 'research' && (
-                    <motion.div
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="space-y-6"
+                    <div className="space-y-6"
                     >
                       <div>
                         <h4 className="text-lg font-semibold mb-4 flex items-center gap-2">
@@ -345,12 +319,11 @@ export default function TechnicalProjectCard({ project, index }: TechnicalProjec
                           </div>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   )}
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+            </div>
+          )}
 
           <Separator className="my-6" />
 
@@ -381,6 +354,6 @@ export default function TechnicalProjectCard({ project, index }: TechnicalProjec
           </div>
         </CardContent>
       </Card>
-    </motion.div>
+    </div>
   );
 }

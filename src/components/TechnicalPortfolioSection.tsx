@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -43,13 +42,7 @@ export default function TechnicalPortfolioSection() {
     <section id="technical-portfolio" className="section-container bg-gradient-to-br from-background via-background to-primary/5">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="p-3 rounded-xl bg-primary/10">
               <Brain className="w-8 h-8 text-primary" />
@@ -86,30 +79,20 @@ export default function TechnicalPortfolioSection() {
               { label: "Safety Events", value: "0", icon: Shield },
               { label: "Production Systems", value: "5", icon: Zap },
             ].map((stat, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                viewport={{ once: true }}
                 className="text-center p-4 bg-secondary/20 rounded-lg border border-border/50"
               >
                 <stat.icon className="w-6 h-6 text-primary mx-auto mb-2" />
                 <div className="text-2xl font-bold text-primary">{stat.value}</div>
                 <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Research Focus Highlight */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="bg-primary/10 border border-primary/20 rounded-xl p-8 mb-16"
-        >
+        <div className="bg-primary/10 border border-primary/20 rounded-xl p-8 mb-16">
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4 text-primary">
               Anthropic Research Alignment
@@ -124,18 +107,12 @@ export default function TechnicalPortfolioSection() {
               and empirical methodologies aligns directly with building helpful, honest, and harmless AI systems.
             </p>
           </div>
-        </motion.div>
+        </div>
 
         <Separator className="my-12" />
 
         {/* Category Filter */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
+        <div className="mb-12">
           <div className="flex items-center gap-3 mb-6">
             <Filter className="w-5 h-5 text-primary" />
             <h3 className="text-xl font-semibold">Filter by Category</h3>
@@ -157,27 +134,20 @@ export default function TechnicalPortfolioSection() {
               );
             })}
           </div>
-        </motion.div>
+        </div>
 
         {/* Projects Grid */}
         <div className="space-y-6">
-          {filteredProjects.map((project, index) => (
+          {filteredProjects.map((project) => (
             <TechnicalProjectCard 
               key={project.id} 
               project={project} 
-              index={index}
             />
           ))}
         </div>
 
         {/* Conclusion */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mt-20 p-8 bg-secondary/10 rounded-xl border border-border/50"
-        >
+        <div className="text-center mt-20 p-8 bg-secondary/10 rounded-xl border border-border/50">
           <h3 className="text-2xl font-bold mb-4">Technical Achievements Summary</h3>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
@@ -216,7 +186,7 @@ export default function TechnicalPortfolioSection() {
               honest, and harmless AI systems."
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
