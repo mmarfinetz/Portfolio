@@ -16,7 +16,7 @@ const categoryIcons = {
   "Programming Languages": Code, 
   "Blockchain & DeFi": Zap,
   "Web Development": Globe,
-  "Research & Analytics": Search,
+  "Business & Research": Search,
 };
 
 const categoryColors = {
@@ -24,7 +24,7 @@ const categoryColors = {
   "Programming Languages": "from-blue-500 to-cyan-500",
   "Blockchain & DeFi": "from-orange-500 to-red-500", 
   "Web Development": "from-green-500 to-teal-500",
-  "Research & Analytics": "from-indigo-500 to-sky-400",
+  "Business & Research": "from-indigo-500 to-sky-400",
 };
 
 export default function Skills() {
@@ -46,8 +46,8 @@ export default function Skills() {
         {/* Skills Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {skills.map((skillCategory) => {
-            const Icon = categoryIcons[skillCategory.category as keyof typeof categoryIcons];
-            const colorClass = categoryColors[skillCategory.category as keyof typeof categoryColors];
+            const Icon = categoryIcons[skillCategory.category as keyof typeof categoryIcons] || Code;
+            const colorClass = categoryColors[skillCategory.category as keyof typeof categoryColors] || "from-gray-500 to-gray-600";
             
             return (
               <div key={skillCategory.category}>
@@ -118,17 +118,20 @@ export default function Skills() {
                 description: "Statistical modeling, experimental design, performance evaluation",
                 gradient: "from-green-500 to-teal-500"
               }
-            ].map((competency) => (
-              <div key={competency.title} className="text-center">
-                <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${competency.gradient} flex items-center justify-center mx-auto mb-4`}>
-                  <competency.icon className="w-8 h-8 text-white" />
+            ].map((competency) => {
+              const IconComponent = competency.icon;
+              return (
+                <div key={competency.title} className="text-center">
+                  <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${competency.gradient} flex items-center justify-center mx-auto mb-4`}>
+                    <IconComponent className="w-8 h-8 text-white" />
                 </div>
                 <h4 className="font-semibold mb-2">{competency.title}</h4>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {competency.description}
                 </p>
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </div>
         </div>
 

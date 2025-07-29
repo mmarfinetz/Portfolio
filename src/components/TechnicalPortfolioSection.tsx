@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { MotionDiv, animationVariants } from "@/lib/motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -42,7 +43,12 @@ export default function TechnicalPortfolioSection() {
     <section id="technical-portfolio" className="section-container bg-gradient-to-br from-background via-background to-primary/5">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <MotionDiv 
+          className="text-center mb-16"
+          {...animationVariants.fadeIn}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="p-3 rounded-xl bg-primary/10">
               <Brain className="w-8 h-8 text-primary" />
@@ -89,7 +95,7 @@ export default function TechnicalPortfolioSection() {
               </div>
             ))}
           </div>
-        </div>
+        </MotionDiv>
 
         {/* Research Focus Highlight */}
         <div className="bg-primary/10 border border-primary/20 rounded-xl p-8 mb-16">
