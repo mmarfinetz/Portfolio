@@ -83,24 +83,40 @@ export const MotionDiv: React.FC<MotionProps> = ({
     );
   }
 
-  return (
-    <Motion.div
-      className={className}
-      initial={initial}
-      animate={animate}
-      exit={exit}
-      transition={transition}
-      whileHover={whileHover}
-      whileInView={whileInView}
-      viewport={viewport}
-      layout={layout}
-      layoutId={layoutId}
-      onClick={onClick}
-      style={style}
-      {...props}
-    >
-      {children}
-    </Motion.div>
+  // Safely access the motion component
+  if (!Motion || !Motion.div) {
+    return (
+      <div 
+        className={className} 
+        onClick={onClick} 
+        style={style}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+
+  const MotionComponent = Motion.div;
+  
+  return React.createElement(
+    MotionComponent,
+    {
+      className,
+      initial,
+      animate,
+      exit,
+      transition,
+      whileHover,
+      whileInView,
+      viewport,
+      layout,
+      layoutId,
+      onClick,
+      style,
+      ...props
+    },
+    children
   );
 };
 
@@ -124,7 +140,12 @@ export const MotionSection: React.FC<MotionProps> = ({ children, ...props }) => 
     return <section {...props}>{children}</section>;
   }
 
-  return <Motion.section {...props}>{children}</Motion.section>;
+  // Safely access the motion component
+  if (!Motion.section) {
+    return <section {...props}>{children}</section>;
+  }
+
+  return React.createElement(Motion.section, props, children);
 };
 
 // AnimatePresence component with fallback
